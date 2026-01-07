@@ -41,6 +41,7 @@ CREATE TABLE radgroupreply (
 
 -- Test User
 INSERT INTO radcheck (username, attribute, op, value) VALUES ('testuser', 'Cleartext-Password', ':=', 'testpass');
+INSERT INTO radcheck (username, attribute, op, value) VALUES ('testuser2', 'Cleartext-Password', ':=', 'testpass2');
 
 CREATE TABLE radpostauth (
   id SERIAL PRIMARY KEY,
