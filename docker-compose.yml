@@ -1,15 +1,4 @@
-version: '3.8'
-
 services:
-  dns:
-    build: ./dns
-    ports:
-      - "53:53/udp"
-      - "53:53/tcp"
-    networks:
-      sae_net:
-        ipv4_address: 172.16.0.2
-
   ntp:
     build: ./ntp
     ports:
@@ -18,22 +7,6 @@ services:
       sae_net:
         ipv4_address: 172.16.0.3
 
-  radius:
-    build: ./radius
-    ports:
-      - "1812:1812/udp"
-      - "1813:1813/udp"
-    networks:
-      sae_net:
-        ipv4_address: 172.16.0.4
-
-  vpn:
-    build: ./vpn
-    ports:
-      - "1194:1194/udp"
-    networks:
-      sae_net:
-        ipv4_address: 172.16.0.5
 
 networks:
   sae_net:
