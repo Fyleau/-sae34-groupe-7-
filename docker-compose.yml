@@ -27,8 +27,6 @@ services:
       - NET_ADMIN
     ports:
       - "11194:1194/udp"
-    volumes:
-      - ./vpn/static.key:/etc/openvpn/static.key
     networks:
       sae_net:
         ipv4_address: 172.16.0.5
