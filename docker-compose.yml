@@ -1,6 +1,8 @@
 services:
   ntp:
     build: ./ntp
+    cap_add:
+      - SYS_TIME
     ports:
       - "123:123/udp"
     networks:
