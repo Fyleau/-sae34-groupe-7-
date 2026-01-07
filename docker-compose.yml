@@ -3,8 +3,8 @@ services:
     build: ./dns
     container_name: dns
     ports:
-      - "53:53/udp"
-      - "53:53/tcp"
+      - "20053:53/udp"
+      - "20053:53/tcp"
     networks:
       sae_net:
         ipv4_address: 172.16.0.2
