@@ -3,7 +3,14 @@ set -e
 
 # Configuration des chemins
 PGDATA="/var/lib/postgresql/data"
-BIN_DIR="/usr/lib/postgresql/15/bin"
+# Détection automatique de la version de PostgreSQL
+PG_VER=$(ls /usr/lib/postgresql/ | sort -V | tail -n 1)
+if [ -z "$PG_VER" ]; then
+    echo "Erreur: PostgreSQL non trouvé."
+    exit 1
+fi
+BIN_DIR="/usr/lib/postgresql/$PG_VER/bin"
+echo "Version PostgreSQL détectée: $PG_VER"
 
 # Si on n'est pas l'utilisateur postgres, on relance le script en tant que postgres
 if [ "$(id -u)" = '0' ]; then
