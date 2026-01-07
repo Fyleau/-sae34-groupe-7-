@@ -5,7 +5,7 @@ RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y freeradius freeradius-postgresql freeradius-utils && \
     rm -rf /var/lib/apt/lists/*
 
-# Configuration du module SQL (PostgreSQL)
+# Configuration du module SQL (PostgreSQL).
 RUN \
     # Activer le module SQL
     ln -s /etc/freeradius/3.0/mods-available/sql /etc/freeradius/3.0/mods-enabled/ && \
