@@ -41,3 +41,39 @@ CREATE TABLE radgroupreply (
 
 -- Test User
 INSERT INTO radcheck (username, attribute, op, value) VALUES ('testuser', 'Cleartext-Password', ':=', 'testpass');
+
+CREATE TABLE radpostauth (
+  id SERIAL PRIMARY KEY,
+  username text NOT NULL default '',
+  pass text NOT NULL default '',
+  reply text NOT NULL default '',
+  authdate timestamp with time zone NOT NULL default 'now()'
+);
+
+CREATE TABLE radacct (
+  radacctid SERIAL PRIMARY KEY,
+  acctsessionid text NOT NULL default '',
+  acctuniqueid text NOT NULL default '',
+  username text NOT NULL default '',
+  groupname text NOT NULL default '',
+  realm text default '',
+  nasipaddress inet NOT NULL default '0.0.0.0',
+  nasportid text default '',
+  nasporttype text default '',
+  acctstarttime timestamp with time zone,
+  acctupdatetime timestamp with time zone,
+  acctstoptime timestamp with time zone,
+  acctinterval interval,
+  acctsessiontime bigint,
+  acctauthentic text default '',
+  connectinfo_start text default '',
+  connectinfo_stop text default '',
+  acctinputoctets bigint,
+  acctoutputoctets bigint,
+  calledstationid text default '',
+  callingstationid text default '',
+  acctterminatecause text default '',
+  servicetype text default '',
+  framedprotocol text default '',
+  framedipaddress inet default NULL
+);
