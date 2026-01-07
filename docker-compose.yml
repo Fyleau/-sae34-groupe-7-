@@ -25,8 +25,6 @@ services:
     container_name: vpn
     cap_add:
       - NET_ADMIN
-    devices:
-      - "/dev/net/tun:/dev/net/tun"
     ports:
       - "11194:1194/udp"
     volumes:
