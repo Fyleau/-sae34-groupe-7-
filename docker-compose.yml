@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  dns:
+    build: ./dns
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+
+  ntp:
+    build: ./ntp
+    ports:
+      - "123:123/udp"
+
+  radius:
+    build: ./radius
+    ports:
+      - "1812:1812/udp"
+      - "1813:1813/udp"
+
+  vpn:
+    build: ./vpn
+    ports:
+      - "1194:1194/udp"
