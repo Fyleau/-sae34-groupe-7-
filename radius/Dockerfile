@@ -21,8 +21,9 @@ RUN \
     # Activer SQL dans le site par défaut (authorize, accounting, session, post-auth)
     sed -i 's/-sql/sql/' /etc/freeradius/3.0/sites-available/default
 
-# Copie des clients
+# Copie des clients et utilisateurs
 COPY raddb/clients.conf /etc/freeradius/3.0/clients.conf
+COPY raddb/users /etc/freeradius/3.0/users
 
 # Ports RADIUS
 EXPOSE 1812/udp

@@ -1,1 +1,3 @@
 # users file
+testuser Cleartext-Password := "testpass"
+testuser2 Cleartext-Password := "testpass2"
