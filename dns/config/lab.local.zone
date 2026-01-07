@@ -1,0 +1,14 @@
+$TTL 86400
+@   IN  SOA dns.lab.local. admin.lab.local. (
+        2026010701 ; Serial
+        3600       ; Refresh
+        1800       ; Retry
+        604800     ; Expire
+        86400 )    ; Minimum
+
+@       IN  NS      dns.lab.local.
+
+dns     IN  A       172.16.0.2
+ntp     IN  A       172.16.0.3
+radius  IN  A       172.16.0.4
+vpn     IN  A       172.16.0.5
