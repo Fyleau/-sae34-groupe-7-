@@ -13,6 +13,7 @@ RUN \
     sed -i 's/driver = "rlm_sql_null"/driver = "rlm_sql_postgresql"/' /etc/freeradius/3.0/mods-available/sql && \
     sed -i 's/dialect = "sqlite"/dialect = "postgresql"/' /etc/freeradius/3.0/mods-available/sql && \
     sed -i 's/server = "localhost"/server = "db"/' /etc/freeradius/3.0/mods-available/sql && \
+    sed -i 's/#\s*port = 5432/port = 5432/' /etc/freeradius/3.0/mods-available/sql && \
     sed -i 's/login = "radius"/login = "radius"/' /etc/freeradius/3.0/mods-available/sql && \
     sed -i 's/password = "radpass"/password = "radius"/' /etc/freeradius/3.0/mods-available/sql && \
     sed -i 's/radius_db = "radius"/radius_db = "radius"/' /etc/freeradius/3.0/mods-available/sql && \
