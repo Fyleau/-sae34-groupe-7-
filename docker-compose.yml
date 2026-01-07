@@ -31,6 +31,18 @@ services:
       sae_net:
         ipv4_address: 172.16.0.5
 
+  radius:
+    build: ./radius
+    container_name: radius
+    depends_on:
+      - db
+    ports:
+      - "1812:1812/udp"
+      - "1813:1813/udp"
+    networks:
+      sae_net:
+        ipv4_address: 172.16.0.4
+
   db:
       image: postgres:latest
       container_name: db
