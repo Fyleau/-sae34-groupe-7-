@@ -11,6 +11,7 @@ RUN mkdir -p /var/lib/postgresql/data /run/postgresql /docker-entrypoint-initdb.
 
 # Copie et droits du script d'entrée
 COPY entrypoint.sh /usr/local/bin/
+RUN sed -i 's/\r$//' /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Configuration

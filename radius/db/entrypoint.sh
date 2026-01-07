@@ -46,6 +46,12 @@ if [ -z "$(ls -A "$PGDATA")" ]; then
     if [ -f "/docker-entrypoint-initdb.d/init.sql" ]; then
         echo "Exécution de init.sql..."
         su - postgres -c "$BIN_DIR/psql -d $POSTGRES_DB -f /docker-entrypoint-initdb.d/init.sql" || echo "ERREUR INIT SQL"
+
+        # Attribution des droits à l'utilisateur spécifique
+        if [ -n "$POSTGRES_USER" ]; then
+            echo "Granting permissions to $POSTGRES_USER..."
+            su - postgres -c "$BIN_DIR/psql -d $POSTGRES_DB -c \"GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO $POSTGRES_USER; GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO $POSTGRES_USER;\""
+        fi
     fi
     
     # Arrêt du mode temporaire
