@@ -23,8 +23,8 @@ if [ -z "$(ls -A "$PGDATA")" ]; then
     echo "Initialisation de la base de données..."
     "$BIN_DIR/initdb" -D "$PGDATA"
     
-    # Configuration réseau
-    echo "host all all 0.0.0.0/0 md5" >> "$PGDATA/pg_hba.conf"
+    # Configuration réseau (Mode TRUST pour éviter les problèmes de password en lab)
+    echo "host all all 0.0.0.0/0 trust" >> "$PGDATA/pg_hba.conf"
     echo "listen_addresses='*'" >> "$PGDATA/postgresql.conf"
     
     # Démarrage temporaire
