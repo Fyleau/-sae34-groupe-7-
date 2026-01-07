@@ -33,18 +33,18 @@ if [ -z "$(ls -A "$PGDATA")" ]; then
     # Création User et Database
     if [ -n "$POSTGRES_USER" ] && [ -n "$POSTGRES_PASSWORD" ]; then
         echo "Création user $POSTGRES_USER..."
-        "$BIN_DIR/psql" -c "CREATE USER $POSTGRES_USER WITH PASSWORD '$POSTGRES_PASSWORD';" || echo "Erreur creation user"
+        su - postgres -c "$BIN_DIR/psql -c \"CREATE USER $POSTGRES_USER WITH PASSWORD '$POSTGRES_PASSWORD';\"" || echo "Erreur creation user"
     fi
     
     if [ -n "$POSTGRES_DB" ]; then
         echo "Création database $POSTGRES_DB..."
-        "$BIN_DIR/psql" -c "CREATE DATABASE $POSTGRES_DB OWNER $POSTGRES_USER;" || echo "Erreur creation DB"
+        su - postgres -c "$BIN_DIR/psql -c \"CREATE DATABASE $POSTGRES_DB OWNER $POSTGRES_USER;\"" || echo "Erreur creation DB"
     fi
     
     # Exécution du script d'init SQL s'il existe
     if [ -f "/docker-entrypoint-initdb.d/init.sql" ]; then
         echo "Exécution de init.sql..."
-        "$BIN_DIR/psql" -d "$POSTGRES_DB" -f /docker-entrypoint-initdb.d/init.sql || echo "Erreur execution init.sql"
+        su - postgres -c "$BIN_DIR/psql -d '$POSTGRES_DB' -f /docker-entrypoint-initdb.d/init.sql" || echo "Erreur execution init.sql"
     fi
     
     # Arrêt du mode temporaire
