@@ -1,6 +1,7 @@
 services:
   ntp:
     build: ./ntp
+    container_name: ntp
     cap_add:
       - SYS_TIME
     ports:
