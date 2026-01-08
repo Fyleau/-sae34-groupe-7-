@@ -5,8 +5,9 @@ RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y openvpn && \
     rm -rf /var/lib/apt/lists/*
 
-# Copie de la configuration
+# Copie de la configuration et des certificats
 COPY server.conf /etc/openvpn/server.conf
+COPY ca.crt server.crt server.key dh.pem /etc/openvpn/
 
 # Port OpenVPN
 EXPOSE 1194/udp
